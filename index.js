@@ -25,9 +25,10 @@ const { fifaData } = require('./fifa.js')
 	💡 İPUCU - verilen data içindeki nesnelerin(objects) "Stage" anahtarına bakmalısınız
 */
 
-function Finaller(/* kodlar buraya */) {
-	
-    /* kodlar buraya */
+function Finaller(macBilgisi) {
+	const finalMaci = macBilgisi.filter(son => son.Stage === 'Final')
+	return finalMaci
+
 }
 
 
