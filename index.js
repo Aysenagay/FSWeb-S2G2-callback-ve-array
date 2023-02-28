@@ -100,11 +100,26 @@ Yillar(fifaData,Finaller)
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
 */
 
-function YillaraGoreKazananlar(/* kodlar buraya */) {
-	
-/* kodlar buraya */
-
-}
+function YillaraGoreKazananlar(
+	data,
+	FinallerCallback,
+	YillarCallback,
+	KazananlarCallback
+  ) {
+	const finalsList = FinallerCallback(data); // Finaller(prop)
+	console.log(finalsList.length);
+	const yearsList = YillarCallback(data, FinallerCallback); // function Yillar(allData, getFinalStages) {
+	console.log(yearsList.length);
+	const winnersList = KazananlarCallback(data, FinallerCallback); // Kazananlar
+	console.log(winnersList.length);
+  
+	const result = yearsList.map((year, index) => {
+	  return `${year} yılında, ${winnersList[index]} dünya kupasını kazandı!`;
+	});
+	return result;
+  }
+  
+  console.log(YillaraGoreKazananlar(fifaData, Finaller, Yillar, Kazananlar));
 
 
 /*  Görev 6: 
@@ -121,11 +136,24 @@ function YillaraGoreKazananlar(/* kodlar buraya */) {
 	
 */
 
-function OrtalamaGolSayisi(/* kodlar buraya */) {
+
 	
-    /* kodlar buraya */
+
 	
+function OrtalamaGolSayisi(finalsCB) {
+  /* kodlar buraya */
+  const totalGoals = finalsCB.reduce(
+    (total, currFinalMac) =>
+      total + currFinalMac["Home Team Goals"] + currFinalMac["Away Team Goals"],
+    0
+  );
+
+  console.log("totalGoals", totalGoals);
+
+  return (totalGoals / finalsCB.length).toFixed(2);
 }
+
+console.log(OrtalamaGolSayisi(Finaller(fifaData)));
 
 
 
